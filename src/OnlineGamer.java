@@ -24,17 +24,17 @@ public class OnlineGamer {
   static TreeMap<Float, User> waitingUsers = new TreeMap<>();
 
   private static void matchScore(User user) {
-    var userWithLowScoreEntry = waitingUsers.floorEntry(user.score); // log n
-    var userWithHighScoreEntry = waitingUsers.ceilingEntry(user.score); // log n
+    var userWithLowScore = waitingUsers.floorEntry(user.score); // log n
+    var userWithHighScore = waitingUsers.ceilingEntry(user.score); // log n
 
-    if (userWithLowScoreEntry != null && isMatch(user, userWithLowScoreEntry.getValue())) {
-      startGame(user, userWithLowScoreEntry.getValue());
-      waitingUsers.remove(userWithLowScoreEntry.getKey()); // log n
-    } else if (userWithHighScoreEntry != null && isMatch(userWithHighScoreEntry.getValue(), user)) {
-      startGame(userWithHighScoreEntry.getValue(), user);
-      waitingUsers.remove(userWithHighScoreEntry.getKey()); // log n
+    if (userWithLowScore != null && isMatch(user, userWithLowScore.getValue())) {
+      startGame(user, userWithLowScore.getValue());
+      waitingUsers.remove(userWithLowScore.getKey()); // log n
+    } else if (userWithHighScore != null && isMatch(userWithHighScore.getValue(), user)) {
+      startGame(user, userWithHighScore.getValue());
+      waitingUsers.remove(userWithHighScore.getKey()); // log n
     } else {
-      waitingUsers.put(user.score, user);
+      waitingUsers.put(user.score, user); // log n
     }
   }
 
