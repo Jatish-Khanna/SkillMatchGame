@@ -2,6 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+
+/***
+ * Time Complexity:
+ * Each insertion/removal operation in the TreeMap takes O(log N).
+ * The lookup for the closest entries using floorEntry and ceilingEntry also takes O(log N).
+ * Overall, the time complexity per user
+ * is O(log N), and for N users, the total complexity will be O(N log N).
+ */
 public class OnlineGamer {
 
   private static final float THRESHOLD = 5.0f;
@@ -39,9 +47,7 @@ public class OnlineGamer {
   }
 
   private static boolean isMatch(User foundUser, User user) {
-    return foundUser != null &&
-        user != null &&
-        Float.compare(foundUser.score - user.score, THRESHOLD) <= 0;
+    return foundUser != null && user != null && Float.compare(foundUser.score - user.score, THRESHOLD) <= 0;
   }
 
   private static void startGame(User secondUser, User user) {
